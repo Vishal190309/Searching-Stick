@@ -8,8 +8,6 @@ namespace Gameplay
 
         class StickCollectionView
         {
-
-
         public:
             StickCollectionView();
             ~StickCollectionView();

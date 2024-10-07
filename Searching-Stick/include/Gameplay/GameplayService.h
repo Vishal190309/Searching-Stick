@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/System/String.hpp>
 #include "Gameplay/StickCollection/StickCollectionModel.h"
-#include "Gameplay/StickCollection/StickCollectionController.h"
+#include "Gameplay/StickCollection/StickCollectionContoller.h"
 
 namespace Gameplay
 {
