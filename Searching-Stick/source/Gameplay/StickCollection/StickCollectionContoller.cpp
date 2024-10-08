@@ -4,7 +4,6 @@
 #include "Gameplay/StickCollection/Stick.h"
 #include "Gameplay/GameplayService.h"
 #include "Global/ServiceLocator.h"
-#include "Sound/SoundService.h"
 #include <random>
 
 namespace Gameplay {
@@ -68,7 +67,6 @@ namespace Gameplay {
 			std::shuffle(sticks.begin(), sticks.end(), random_engine);
 		}
 
-
 		void Gameplay::Collection::StickCollectionContoller::resetSticksColor()
 		{
 			for (int i = 0; i < sticks.size(); i++)
@@ -102,14 +100,14 @@ namespace Gameplay {
 
 		void Gameplay::Collection::StickCollectionContoller::processLinearSearch()
 		{
-			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
+
 			for (int i = 0; i < sticks.size(); i++)
 			{
 
 				number_of_array_access += 1;
 				number_of_comparisons++;
 
-				sound_service->playSound(Sound::SoundType::COMPARE_SFX);
+				Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
 
 				if (sticks[i] == stick_to_search)
 				{
@@ -126,8 +124,6 @@ namespace Gameplay {
 
 			}
 		}
-
-
 
 		void Gameplay::Collection::StickCollectionContoller::initializeSticksArray()
 		{
@@ -171,6 +167,7 @@ namespace Gameplay {
 
 			reset();
 
+			time_complexity = "XYZ";
 		}
 
 		void Gameplay::Collection::StickCollectionContoller::update()
@@ -210,13 +207,12 @@ namespace Gameplay {
 			switch (search_type)
 			{
 			case Gameplay::Collection::SearchType::LINEAR_SEARCH:
-				time_complexity = "O(n)";											// assigned "O(n)" to 'time_complexity'
+				time_complexity = "O(n)";
 				current_operation_delay = collection_model->linear_search_delay;
 				search_thread = std::thread(&StickCollectionContoller::processLinearSearch, this);
 				break;
 			}
 		}
-
 
 		SearchType Gameplay::Collection::StickCollectionContoller::getSearchType()
 		{
@@ -238,7 +234,17 @@ namespace Gameplay {
 			return collection_model->number_of_elements;
 		}
 
-		
+		int Gameplay::Collection::StickCollectionContoller::getDelayMilliseconds()
+		{
+			return current_operation_delay;
+		}
+
+		sf::String Gameplay::Collection::StickCollectionContoller::getTimeComplexity()
+		{
+			return time_complexity;
+		}
+
 	}
 }
+
 

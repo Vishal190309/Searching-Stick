@@ -19,9 +19,11 @@ namespace Sound
 	void SoundService::loadSoundFromFile()
 	{
 		if (!buffer_button_click.loadFromFile(Config::button_click_sound_path))
-			printf("Error loading background music file");
-		if (!compare_sound.loadFromFile(Config::compare_sfx_path))
-			printf("Error loading compare music file");
+			printf("Error loading button click sfx file");
+
+		if (!buffer_compare_sfx.loadFromFile(Config::compare_sfx_path)) {
+			printf("Error loading compare sfx file");
+		}
 	}
 
 	void SoundService::playSound(SoundType soundType)
@@ -32,7 +34,7 @@ namespace Sound
 			sound_effect.setBuffer(buffer_button_click);
 			break;
 		case SoundType::COMPARE_SFX:
-			sound_effect.setBuffer(compare_sound);
+			sound_effect.setBuffer(buffer_compare_sfx);;
 			break;
 		default:
 			printf("Invalid sound type");

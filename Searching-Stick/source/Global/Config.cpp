@@ -9,8 +9,10 @@ namespace Global
 	const sf::String Config::linear_search_button_texture_path = "assets/textures/linear_search_button.png";
 
 	const sf::String Config::binary_search_button_texture_path = "assets/textures/binary_search_button.png";
-
+	           
 	const sf::String Config::quit_button_texture_path = "assets/textures/quit_button.png";
+
+	const sf::String Config::menu_button_large_texture_path = "assets/textures/menu_button_large.png";
 
 	const sf::String Config::bubble_bobble_font_path = "assets/fonts/bubbleBobble.ttf";
 

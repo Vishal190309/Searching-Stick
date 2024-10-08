@@ -13,11 +13,12 @@ namespace Sound
 	{
 	private:
 		const int background_music_volume = 30;
+		const int sound_effect_volume = 200;
 
 		sf::Music background_music;
 		sf::Sound sound_effect;
 		sf::SoundBuffer buffer_button_click;
-		sf::SoundBuffer compare_sound;
+		sf::SoundBuffer buffer_compare_sfx;
 
 		void loadBackgroundMusicFromFile();
 		void loadSoundFromFile();
