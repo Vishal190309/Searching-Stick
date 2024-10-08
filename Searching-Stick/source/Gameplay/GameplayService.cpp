@@ -18,6 +18,7 @@ namespace Gameplay
 
 	void GameplayService::initialize()
 	{
+		initializeRandomSeed();
 		gameplay_controller->initialize();
 		collection_controller->initialize();
 	}
@@ -36,16 +37,27 @@ namespace Gameplay
 
 	void GameplayService::reset()
 	{
+		gameplay_controller->reset();
 	}
 	void GameplayService::searchElement(Collection::SearchType search_type)
 	{
+		collection_controller->searchElement(search_type);
 	}
 	Collection::SearchType GameplayService::getCurrentSearchType()
 	{
-		return Collection::SearchType();
+		return collection_controller->getSearchType();
 	}
 	int GameplayService::getNumberOfSticks()
 	{
-		return 0;
+		return collection_controller->getNumberOfSticks();
+	}
+
+	void GameplayService::initializeRandomSeed() // Helper function for initializing the random seed
+	{
+		// Seed the random number generator with the current time
+		// This ensures that the sequence of random numbers will be different each time the program is run
+		// The `std::time(nullptr)` function returns the current time as the number of seconds since the Unix epoch (January 1, 1970)
+		// The `static_cast<unsigned int>` is used to cast the `std::time_t` value to an `unsigned int`, which is required by `std::srand`
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	}
 }
