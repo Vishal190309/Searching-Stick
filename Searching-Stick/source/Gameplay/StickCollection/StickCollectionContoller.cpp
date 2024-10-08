@@ -210,11 +210,13 @@ namespace Gameplay {
 			switch (search_type)
 			{
 			case Gameplay::Collection::SearchType::LINEAR_SEARCH:
+				time_complexity = "O(n)";											// assigned "O(n)" to 'time_complexity'
 				current_operation_delay = collection_model->linear_search_delay;
 				search_thread = std::thread(&StickCollectionContoller::processLinearSearch, this);
 				break;
 			}
 		}
+
 
 		SearchType Gameplay::Collection::StickCollectionContoller::getSearchType()
 		{
